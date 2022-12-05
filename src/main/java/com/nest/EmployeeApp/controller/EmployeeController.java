@@ -12,17 +12,22 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String AddPage(){
+    public String AddEmployee(){
         return "Welcome to Employee Add Page";
     }
 
     @GetMapping("/search")
-    public String SearchPage(){
+    public String SearchEmployee(){
         return "Welcome to Employee Search Page";
     }
 
     @GetMapping("/delete")
-    public String DeletePage(){
+    public String DeleteEmployee(){
         return "Welcome to Employee Delete Page";
+    }
+
+    @GetMapping("/viewall")
+    public String ViewAllEmployee(){
+        return "Welcome to View All Employee Page";
     }
 }
