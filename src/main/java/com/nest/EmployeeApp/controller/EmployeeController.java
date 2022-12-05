@@ -15,4 +15,14 @@ public class EmployeeController {
     public String AddPage(){
         return "Welcome to Employee Add Page";
     }
+
+    @GetMapping("/search")
+    public String SearchPage(){
+        return "Welcome to Employee Search Page";
+    }
+
+    @GetMapping("/delete")
+    public String DeletePage(){
+        return "Welcome to Employee Delete Page";
+    }
 }
