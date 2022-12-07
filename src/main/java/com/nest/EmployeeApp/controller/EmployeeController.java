@@ -1,19 +1,23 @@
 package com.nest.EmployeeApp.controller;
 
+import com.nest.EmployeeApp.dao.EmployeeDao;
 import com.nest.EmployeeApp.model.Employee;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class EmployeeController {
 
+    @Autowired
+    private EmployeeDao dao;
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String HomePage(){
         return "Welcome to Employee App";
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
     public String AddEmployee(@RequestBody Employee e){
         System.out.println(e.getEmpcode());
@@ -24,26 +28,27 @@ public class EmployeeController {
         System.out.println(e.getMobile());
         System.out.println(e.getUsername());
         System.out.println(e.getPassword());
+        dao.save(e);
         return "Welcome to Employee Add Page";
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/search")
     public String SearchEmployee(){
         return "Welcome to Employee Search Page";
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/delete")
     public String DeleteEmployee(){
         return "Welcome to Employee Delete Page";
     }
-
+    @CrossOrigin(origins = "*")
     @PostMapping("/edit")
     public String EditEmployee(){
         return "Welcome to Employee Edit Page";
     }
-
+    @CrossOrigin(origins = "*")
     @GetMapping("/viewall")
-    public String ViewAllEmployee(){
-        return "Welcome to View All Employee Page";
+    public List<Employee> ViewAllEmployee(){
+        return (List<Employee>) dao.findAll();
     }
 }
